@@ -1,20 +1,31 @@
-import './globals.css'
-import Image from 'next/image'
+import "./globals.css";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <head />
-      <body>
+      <body className={`${inter.className} font-light`}>
         <div className="absolute inset-x-0 p-14 z-10">
           <nav className="flex items-center justify-between text-grey">
             <ul className="flex flex-1 self-stretch items-center">
-              <li><a className="p-5" href="#">Cases</a></li>
-              <li><a className="p-5" href="#">Something</a></li>
+              <li>
+                <a className="p-5" href="#">
+                  Cases
+                </a>
+              </li>
+              <li>
+                <a className="p-5" href="#">
+                  Something
+                </a>
+              </li>
             </ul>
             <div className="flex">
               <Image
@@ -41,5 +52,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }
