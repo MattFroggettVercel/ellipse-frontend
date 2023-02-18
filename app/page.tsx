@@ -14,7 +14,7 @@ export default function Home() {
             width="298"
             height="418"
             alt=""
-            className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-95"
+            className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-90"
           />
 
           <div className="mt-10 text-center group-hover:opacity-70">
@@ -31,7 +31,7 @@ export default function Home() {
             width="298"
             height="418"
             alt=""
-            className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-95"
+            className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-90"
           />
 
           <div className="mt-10 text-center group-hover:opacity-70">
