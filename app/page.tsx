@@ -7,15 +7,16 @@ export default function Home() {
       <div className="h-screen relative">
         <Image src="/splash.jpg" fill alt={""} className="object-cover" />
       </div>
-      <div className="min-h-screen flex items-center justify-center space-x-40">
+      <div className="min-h-screen flex flex-col items-center justify-center md:space-x-40">
         <a href="#" className="flex flex-col items-center group p-10">
-          <Image
-            src="/case.jpg"
-            width="298"
-            height="418"
-            alt=""
-            className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-90"
-          />
+          <div className="w-auto h-auto relative">
+            <Image
+              src="/case.jpg"
+              fill
+              alt=""
+              className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-90"
+            />
+          </div>
 
           <div className="mt-10 text-center group-hover:opacity-70">
             <h3>
@@ -26,13 +27,14 @@ export default function Home() {
           </div>
         </a>
         <a href="#" className="flex flex-col items-center group">
-          <Image
-            src="/case.jpg"
-            width="298"
-            height="418"
-            alt=""
-            className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-90"
-          />
+          <div className="relative">
+            <Image
+              src="/case.jpg"
+              fill
+              alt=""
+              className="transition duration-1000 group-hover:scale-[1.04] group-hover:opacity-90"
+            />
+          </div>
 
           <div className="mt-10 text-center group-hover:opacity-70">
             <h3>
@@ -43,8 +45,18 @@ export default function Home() {
           </div>
         </a>
       </div>
+      <div className="relative">
+        <div className="h-screen sticky top-0">
+          <Image src="/splash2.jpg" fill alt={""} className="object-cover" />
+          <div className="absolute inset-0 bg-black z-10 opacity-5">m</div>
+        </div>
+        <div className="px-20 bg-gradient-to-t from-black via-black z-20 relative h-[60vh]">
+          I love my baby
+        </div>
+      </div>
+
       <div className="h-screen relative">
-        <Image src="/splash2.jpg" fill alt={""} className="object-cover" />
+        <Image src="/splash.jpg" fill alt={""} className="object-cover" />
       </div>
     </main>
   );
