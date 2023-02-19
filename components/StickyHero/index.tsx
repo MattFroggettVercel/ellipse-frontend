@@ -7,14 +7,18 @@ import { Playfair_Display } from "@next/font/google";
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
 export default function StickyHero() {
-  const overlayRef = useRef();
-  const coverRef = useRef();
+  const overlayRef = useRef<any>();
+  const coverRef = useRef<any>();
 
   const opacityMin = 0;
   const opacityMax = 0.6;
-  const windowHeight = window.outerHeight;
 
-  const onScroll = useCallback((event) => {
+  let windowHeight = 0;
+  if (typeof window !== "undefined") {
+    windowHeight = window.outerHeight;
+  }
+
+  const onScroll = useCallback((event: any) => {
     const overlayRect = overlayRef.current?.getBoundingClientRect();
 
     const upperBound = windowHeight - overlayRect.height;
@@ -22,13 +26,13 @@ export default function StickyHero() {
     if (overlayRect.y < windowHeight) {
       const percentage = 1 - (overlayRect.y - upperBound) / upperBound;
 
-      // console.log(opacityMax * percentage);
-
       const opacity = Math.min(opacityMax * percentage, opacityMax);
 
-      window.requestAnimationFrame(() => {
-        coverRef.current.style.opacity = opacity;
-      });
+      if (typeof window !== "undefined") {
+        window.requestAnimationFrame(() => {
+          coverRef.current.style.opacity = opacity;
+        });
+      }
     }
 
     /*
@@ -37,7 +41,9 @@ export default function StickyHero() {
   }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll, { passive: true });
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
 
     return () => {};
   }, []);
