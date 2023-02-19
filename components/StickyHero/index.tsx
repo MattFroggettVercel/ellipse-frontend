@@ -3,6 +3,7 @@
 import { useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { Playfair_Display } from "@next/font/google";
+import throttle from "lodash/throttle";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function StickyHero() {
 
     const upperBound = windowHeight - overlayRect.height;
 
-    if (overlayRect.y < windowHeight) {
+    if (overlayRect.y < windowHeight && overlayRect.y > upperBound) {
       const percentage = 1 - (overlayRect.y - upperBound) / upperBound;
 
       const opacity = Math.min(opacityMax * percentage, opacityMax);
@@ -34,15 +35,13 @@ export default function StickyHero() {
         });
       }
     }
-
-    /*
-      when overlayY < window.innerHeight
-    */
   }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("scroll", throttle(onScroll, 25), {
+        passive: true,
+      });
     }
 
     return () => {};
@@ -59,12 +58,16 @@ export default function StickyHero() {
       ></div>
       <div
         ref={overlayRef}
-        className="px-8 min-h-[50vh] relative z-30 sticky-fix text-white"
+        className="px-8 min-h-[40vh] relative z-30 sticky-fix text-white"
       >
         <h2 className={`${playfair.className} text-4xl mb-6`}>
           Timeless Luxury
         </h2>
-        <p>Discover our collection of vintage inspired handmade watch cases</p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis
+          neque libero. Nulla eu sapien libero. Proin egestas iaculis tempus.
+          Vestibulum suscipit pretium tortor, quis faucibus lectus laoreet a.
+        </p>
       </div>
     </div>
   );
